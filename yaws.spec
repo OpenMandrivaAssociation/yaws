@@ -2,8 +2,8 @@ Summary:	A high performance HTTP 1.1 webserver
 Name:		yaws
 Version:	1.77
 Release:	%mkrel 1
-License:	GPL
-Group:		A
+License:	BSD
+Group:		System/Servers
 Url:		http://yaws.hyber.org/
 Source0:	http://yaws.hyber.org/download/%{name}-%{version}.tar.bz2
 Source1:	%{name}.conf
