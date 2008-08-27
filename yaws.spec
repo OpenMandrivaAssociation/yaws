@@ -13,7 +13,6 @@ BuildRequires:	erlang-devel
 BuildRequires:	erlang-mnesia
 BuildRequires:	erlang-xmerl
 BuildRequires:	erlang-dialyzer
-BuildRequires:	erlang-ssl
 BuildRequires:	pam-devel
 Requires:	erlang-mnesia
 Requires:	erlang-xmerl
