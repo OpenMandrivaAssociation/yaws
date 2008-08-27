@@ -7,10 +7,13 @@ Group:		System/Servers
 Url:		http://yaws.hyber.org/
 Source0:	http://yaws.hyber.org/download/%{name}-%{version}.tar.bz2
 Source1:	%{name}.conf
+Patch0:		%{name}-1.77-makefile.patch
 BuildRequires:	erlang-compiler
 BuildRequires:	erlang-devel
 BuildRequires:	erlang-mnesia
 BuildRequires:	erlang-xmerl
+BuildRequires:	erlang-dialyzer
+BuildRequires:	erlang-ssl
 BuildRequires:	pam-devel
 Requires:	erlang-mnesia
 Requires:	erlang-xmerl
@@ -28,17 +31,18 @@ modes of operations are supported.
 
 %prep
 %setup -q %{name}-%{version}
+%patch0 -p1
 
 %build
 %configure2_5x \
 	--with-defaultcharset=UTF-8
 
-%make
+%make BINDIR=%{_bindir} LIBDIR=%{_libdir}
 
 %install
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
-%makeinstall_std
+%makeinstall_std BINDIR=%{_bindir} LIBDIR=%{_libdir}
 
 mkdir -p %{buildroot}%{_initrddir}
 mv -f %{buildroot}%{_sysconfdir}/init.d/%{name} %{buildroot}%{_initrddir}/%{name}
