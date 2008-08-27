@@ -7,7 +7,13 @@ Group:		System/Servers
 Url:		http://yaws.hyber.org/
 Source0:	http://yaws.hyber.org/download/%{name}-%{version}.tar.bz2
 Source1:	%{name}.conf
+BuildRequires:	erlang-compiler
 BuildRequires:	erlang-devel
+BuildRequires:	erlang-mnesia
+BuildRequires:	erlang-xmerl
+BuildRequires:	pam-devel
+Requires:	erlang-mnesia
+Requires:	erlang-xmerl
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
