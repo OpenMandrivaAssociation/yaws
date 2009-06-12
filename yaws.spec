@@ -1,13 +1,12 @@
 Summary:	A high performance HTTP 1.1 webserver
 Name:		yaws
-Version:	1.77
-Release:	%mkrel 5
+Version:	1.82
+Release:	%mkrel 1
 License:	BSD
 Group:		System/Servers
 Url:		http://yaws.hyber.org/
-Source0:	http://yaws.hyber.org/download/%{name}-%{version}.tar.bz2
+Source0:	http://yaws.hyber.org/download/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
-Patch0:		%{name}-1.77-makefile.patch
 Patch1:		%{name}-1.77-www.patch
 BuildRequires:	erlang-compiler
 BuildRequires:	erlang-devel
@@ -34,7 +33,6 @@ modes of operations are supported.
 
 %prep
 %setup -q
-%patch0 -p1
 %patch1 -p1
 
 %build
@@ -77,7 +75,7 @@ cp %{SOURCE1} %{buildroot}%{_sysconfdir}/%{name}/%{name}.conf
 
 %files
 %defattr(-,root,root)
-%doc README ChangeLog doc/%{name}.pdf
+%doc README ChangeLog 
 %dir %{_sysconfdir}/%{name}
 %{_bindir}/*
 %config(noreplace) %{_sysconfdir}/%{name}/*
@@ -86,4 +84,5 @@ cp %{SOURCE1} %{buildroot}%{_sysconfdir}/%{name}/%{name}.conf
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man5/%{name}*.5.*
 %{_var}/%{name}
+%{_libdir}/pkgconfig/%{name}.pc
 %exclude %{_docdir}/%{name}-%{version}
