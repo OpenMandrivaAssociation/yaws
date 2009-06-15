@@ -38,11 +38,16 @@ modes of operations are supported.
 %patch1 -p1
 
 %build
+# (tpg) fix pc file
+sed -i -e 's@$(PREFIX)/lib/pkgconfig@$(LIBDIR)/pkgconfig@g' Makefile
+sed -i -e 's@/lib@/%{_lib}@g' *.pc.in
+
 %configure2_5x \
 	--with-defaultcharset=UTF-8 \
 	--sysconfdir=%{_sysconfdir}/%{name}
 
-%make BINDIR=%{_bindir} LIBDIR=%{_libdir}
+# (tpg) limit threads to 4, so it can build on x86_64
+%make BINDIR=%{_bindir} LIBDIR=%{_libdir} -j4
 
 %install
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
