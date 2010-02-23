@@ -1,6 +1,6 @@
 Summary:	A high performance HTTP 1.1 webserver
 Name:		yaws
-Version:	1.84
+Version:	1.85
 Release:	%mkrel 1
 License:	BSD
 Group:		System/Servers
@@ -34,7 +34,7 @@ modes of operations are supported.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 %patch1 -p1
 
 %build
