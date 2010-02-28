@@ -7,7 +7,7 @@ Group:		System/Servers
 Url:		http://yaws.hyber.org/
 Source0:	http://yaws.hyber.org/download/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
-Patch0:		%{name}-1.82-makefile.patch
+Patch0:		%{name}-1.87-makefile.patch
 Patch1:		%{name}-1.77-www.patch
 BuildRequires:	erlang-compiler
 BuildRequires:	erlang-devel
@@ -34,7 +34,7 @@ modes of operations are supported.
 
 %prep
 %setup -q
-#%patch0 -p1
+%patch0 -p1
 %patch1 -p1
 
 %build
