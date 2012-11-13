@@ -1,0 +1,33 @@
+diff -Naur yaws-1.77/www/embed.yaws yaws-1.77.tpg/www/embed.yaws
+--- yaws-1.77/www/embed.yaws	2008-06-16 08:01:02.000000000 +0000
++++ yaws-1.77.tpg/www/embed.yaws	2008-11-29 15:06:31.000000000 +0000
+@@ -186,7 +186,7 @@
+   </p>
+ <div class="box">
+   <pre>
+-# erl -pa /usr/local/lib/yaws/ebin -yaws embedded true -s ybed
++# erl -pa /usr/lib/yaws/ebin -yaws embedded true -s ybed
+   </pre>
+ </div>
+ 
+@@ -199,7 +199,7 @@
+ 
+ <div class="box">
+   <verbatim>
+-#  erl -pa /usr/local/lib/yaws/ebin -yaws embedded true -s ybed
++#  erl -pa /usr/lib/yaws/ebin -yaws embedded true -s ybed
+ Erlang (BEAM) emulator version 5.3.b1 [source] [hipe]
+ 
+ Eshell V5.3.b1  (abort with ^G)
+diff -Naur yaws-1.77/www/ybed.erl yaws-1.77.tpg/www/ybed.erl
+--- yaws-1.77/www/ybed.erl	2008-02-14 16:57:23.000000000 +0000
++++ yaws-1.77.tpg/www/ybed.erl	2008-11-29 15:03:45.000000000 +0000
+@@ -8,7 +8,7 @@
+ -module(ybed).
+ -compile(export_all).
+ 
+--include("/usr/local/lib/yaws/include/yaws.hrl").
++-include_lib("yaws/include/yaws.hrl").
+ 
+ start() ->
+     application:start(yaws),

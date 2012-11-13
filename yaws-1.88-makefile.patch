@@ -1,0 +1,84 @@
+diff -Naur yaws-1.87//Makefile yaws-1.87.tpg//Makefile
+--- yaws-1.87//Makefile	2010-01-11 21:11:26.000000000 +0000
++++ yaws-1.87.tpg//Makefile	2010-02-28 15:52:45.000000000 +0000
+@@ -24,8 +24,8 @@
+ 	@echo "-------------------------------"
+ 	@echo
+ 	@echo "** etc files went into        ${ETCDIR}"	
+-	@echo "** executables went into      ${prefix}/bin"		
+-	@echo "** library files went into    ${prefix}/lib/yaws"
++	@echo "** executables went into      ${BINDIR}"		
++	@echo "** library files went into    ${LIBDIR}/yaws"
+ 	@echo "** var files went into        ${VARDIR}"
+ 	@echo "** default docroot went into  ${VARDIR}/yaws/www"
+ 	@echo
+@@ -75,8 +75,8 @@
+ 	@echo "-------------------------------"
+ 	@echo
+ 	@echo "** etc files will go into     ${ETCDIR}"	
+-	@echo "** executables will go into   ${prefix}/bin"		
+-	@echo "** library file will go into  ${prefix}/lib/yaws"
++	@echo "** executables will go into   ${BINDIR}"		
++	@echo "** library file will go into  ${LIBDIR}/yaws"
+ 	@echo "** var files will go into     ${VARDIR}"
+ 	@echo
+ 	@echo "--------------------------------"
+diff -Naur yaws-1.87//c_src/Makefile yaws-1.87.tpg//c_src/Makefile
+--- yaws-1.87//c_src/Makefile	2010-01-11 21:11:26.000000000 +0000
++++ yaws-1.87.tpg//c_src/Makefile	2010-02-28 15:54:12.000000000 +0000
+@@ -32,12 +32,12 @@
+ 	-rm -f $(PRIV_FILES) setuid_drv.$(OBJ) epam.$(OBJ) yaws_sendfile_drv.$(OBJ) hashtable.$(OBJ)
+ 
+ install:	$(PRIV_FILES)
+-	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib/yaws/priv/lib
+-	$(INSTALL) $(PRIV_FILES) $(DESTDIR)$(PREFIX)/lib/yaws/priv/lib
++	$(INSTALL) -d $(DESTDIR)$(LIBDIR)/yaws/priv/lib
++	$(INSTALL) $(PRIV_FILES) $(DESTDIR)$(LIBDIR)/yaws/priv/lib
+ ifndef WIN32
+-	if [ `id -u` = "0" -a -d $(DESTDIR)$(PREFIX)/lib/yaws/priv/epam ]; then \
+-		chown root $(DESTDIR)$(PREFIX)/lib/yaws/priv/epam; \
+-		chmod a+s $(DESTDIR)$(PREFIX)/lib/yaws/priv/epam; \
++	if [ `id -u` = "0" -a -d $(DESTDIR)$(LIBDIR)/yaws/priv/epam ]; then \
++		chown root $(DESTDIR)$(LIBDIR)/yaws/priv/epam; \
++		chmod a+s $(DESTDIR)$(LIBDIR)/yaws/priv/epam; \
+ 	fi
+ endif
+ 
+diff -Naur yaws-1.87//scripts/Makefile yaws-1.87.tpg//scripts/Makefile
+--- yaws-1.87//scripts/Makefile	2010-01-11 21:11:26.000000000 +0000
++++ yaws-1.87.tpg//scripts/Makefile	2010-02-28 15:54:40.000000000 +0000
+@@ -40,7 +40,7 @@
+ yaws.conf:
+ 	@echo PREFIX is $(PREFIX)
+ 	cat yaws.conf.template | \
+-		./Subst %yawsdir% "$(PREFIX)/lib/yaws"  | \
++		./Subst %yawsdir% "$(LIBDIR)/yaws"  | \
+ 		./Subst %logdir% "$(PREFIX)/var/log/yaws"  | \
+ 		./Subst %vardir% "$(VARDIR)"  | \
+ 		./Subst %host% `hostname`  | \
+diff -Naur yaws-1.87//src/Makefile yaws-1.87.tpg//src/Makefile
+--- yaws-1.87//src/Makefile	2010-01-11 21:11:26.000000000 +0000
++++ yaws-1.87.tpg//src/Makefile	2010-02-28 15:55:01.000000000 +0000
+@@ -114,15 +114,15 @@
+ 	rm -f $(EBIN_FILES) yaws_generated.erl charset.def mime_types.erl yaws_configure.hrl ../ebin/*.beam
+ 
+ install: regen all docsinstall
+-	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib/yaws/examples/ebin
+-	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib/yaws/examples/include
+-	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib/yaws/ebin
+-	$(INSTALL) -d $(DESTDIR)$(PREFIX)/lib/yaws/priv
++	$(INSTALL) -d $(DESTDIR)$(LIBDIR)/yaws/examples/ebin
++	$(INSTALL) -d $(DESTDIR)$(LIBDIR)/yaws/examples/include
++	$(INSTALL) -d $(DESTDIR)$(LIBDIR)/yaws/ebin
++	$(INSTALL) -d $(DESTDIR)$(LIBDIR)/yaws/priv
+ 	$(INSTALL) -d $(DESTDIR)$(VARDIR)/log/yaws
+ 	$(INSTALL) -d $(DESTDIR)$(VARDIR)/yaws/ebin
+-	(cd ..; tar cf - ebin ) | (cd $(DESTDIR)$(PREFIX)/lib/yaws; tar xf - )
+-	(cd ..; tar cf - include ) | (cd $(DESTDIR)$(PREFIX)/lib/yaws; tar xf - )
+-	(cd ..; tar cf - priv/*.xsd ) | (cd $(DESTDIR)$(PREFIX)/lib/yaws; tar xf - )
++	(cd ..; tar cf - ebin ) | (cd $(DESTDIR)$(LIBDIR)/yaws; tar xf - )
++	(cd ..; tar cf - include ) | (cd $(DESTDIR)$(LIBDIR)/yaws; tar xf - )
++	(cd ..; tar cf - priv/*.xsd ) | (cd $(DESTDIR)$(LIBDIR)/yaws; tar xf - )
+ 	$(RM) yaws_generated.erl ../ebin/yaws_generated.beam 2>/dev/null || true
+ 
+ docsinstall:
