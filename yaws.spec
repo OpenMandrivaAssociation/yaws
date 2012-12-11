@@ -1,14 +1,14 @@
 Summary:	A high performance HTTP 1.1 webserver
 Name:		yaws
-Version:	1.88
-Release:	%mkrel 2
+Version:	1.87
+Release:	%mkrel 1
 License:	BSD
 Group:		System/Servers
 Url:		http://yaws.hyber.org/
 Source0:	http://yaws.hyber.org/download/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
-Patch0:		%{name}-1.88-makefile.patch
-Patch1:		%{name}-1.88-www.patch
+Patch0:		%{name}-1.87-makefile.patch
+Patch1:		%{name}-1.77-www.patch
 BuildRequires:	erlang-compiler
 BuildRequires:	erlang-devel
 BuildRequires:	erlang-mnesia
@@ -93,3 +93,52 @@ cp %{SOURCE1} %{buildroot}%{_sysconfdir}/%{name}/%{name}.conf
 %{_var}/%{name}
 %{_libdir}/pkgconfig/%{name}.pc
 %exclude %{_docdir}/%{name}-%{version}
+
+
+%changelog
+* Sun Feb 28 2010 Tomasz Pawel Gajc <tpg@mandriva.org> 1.87-1mdv2010.1
++ Revision: 512744
+- rediff patch 0
+- update to new version 1.87
+- update to new version 1.85
+- disable patch 0
+
+* Sun Aug 09 2009 Frederik Himpe <fhimpe@mandriva.org> 1.84-1mdv2010.0
++ Revision: 412557
+- update to new version 1.84
+
+* Wed Jun 17 2009 Tomasz Pawel Gajc <tpg@mandriva.org> 1.82-3mdv2010.0
++ Revision: 386827
+- rebuild for new erlang
+
+* Mon Jun 15 2009 Tomasz Pawel Gajc <tpg@mandriva.org> 1.82-2mdv2010.0
++ Revision: 386165
+- fix pkgconfig file
+- make it build on x86_64 by limiting max jobs to 4 while compiling
+
+  + Frederik Himpe <fhimpe@mandriva.org>
+    - Re-add makefile patch: it's still needed
+    - Update to new version 1.82
+    - Remove makefile patch: not needed anymore
+
+* Sat Nov 29 2008 Tomasz Pawel Gajc <tpg@mandriva.org> 1.77-5mdv2009.1
++ Revision: 308021
+- Patch1: fix system path
+- config file looks nicer now
+
+* Sat Nov 29 2008 Tomasz Pawel Gajc <tpg@mandriva.org> 1.77-4mdv2009.1
++ Revision: 307859
+- fix config file
+- add missing requires on erlang-cryptop, erlang-compiler and erlang-dialyzer
+- move config files to /etc/yaws
+- add scriplets
+
+* Fri Aug 29 2008 Tomasz Pawel Gajc <tpg@mandriva.org> 1.77-3mdv2009.0
++ Revision: 277145
+- rebuild
+- Patch0: fix install on x86_64
+- add missing buildrequires
+- fix rpm group and license
+- import yaws
+
+
