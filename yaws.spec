@@ -1,7 +1,7 @@
 Summary:	A high performance HTTP 1.1 webserver
 Name:		yaws
 Version:	1.87
-Release:	%mkrel 1
+Release:	2
 License:	BSD
 Group:		System/Servers
 Url:		http://yaws.hyber.org/
