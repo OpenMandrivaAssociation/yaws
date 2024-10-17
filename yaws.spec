@@ -4,7 +4,7 @@ Version:	1.87
 Release:	2
 License:	BSD
 Group:		System/Servers
-Url:		http://yaws.hyber.org/
+Url:		https://yaws.hyber.org/
 Source0:	http://yaws.hyber.org/download/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
 Patch0:		%{name}-1.87-makefile.patch
