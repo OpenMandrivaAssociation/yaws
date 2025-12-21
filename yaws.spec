@@ -9,6 +9,11 @@ Source0:	http://yaws.hyber.org/download/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
 Patch0:		%{name}-1.87-makefile.patch
 Patch1:		%{name}-1.77-www.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	erlang-compiler
 BuildRequires:	erlang-devel
 BuildRequires:	erlang-mnesia
